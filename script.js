@@ -14,9 +14,9 @@ function adicionar() {
   const data = new Date();
 
   movimentos.push({
-    valor: valor,
-    tipo: tipo.toLowerCase(),
-    descricao: descricao,
+    valor,
+    tipo,
+    descricao,
     mes: data.getMonth(),
     ano: data.getFullYear()
   });
@@ -64,17 +64,13 @@ function atualizar() {
   });
 
   document.getElementById("lista").innerHTML = listaHTML;
-
   document.getElementById("ganhosMes").innerText = "R$ " + ganhosMes.toFixed(2);
   document.getElementById("gastosMes").innerText = "R$ " + gastosMes.toFixed(2);
   document.getElementById("saldoTotal").innerText =
     "R$ " + (ganhosMes - gastosMes).toFixed(2);
 
-  const titulo = document.getElementById("tituloMes");
-  if (titulo) {
-    titulo.innerText =
-      "Gastos de " + nomesMeses[mesAtual] + " " + anoAtual;
-  }
+  document.getElementById("tituloMes").innerText =
+    "Gastos de " + nomesMeses[mesAtual] + " " + anoAtual;
 }
 
 window.onload = atualizar;
