@@ -14,9 +14,9 @@ function adicionar() {
   const data = new Date();
 
   movimentos.push({
-    valor,
-    tipo,
-    descricao,
+    valor: valor,
+    tipo: tipo.toLowerCase(),
+    descricao: descricao,
     mes: data.getMonth(),
     ano: data.getFullYear()
   });
