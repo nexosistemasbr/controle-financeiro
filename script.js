@@ -23,7 +23,7 @@ function adicionar() {
     ano
   };
 
-  movimentos.push(movimento);salvardados();
+  movimentos.push(movimento);salvarDados();
 
   document.getElementById("valor").value = "";
   document.getElementById("descricao").value = "";
