@@ -13,15 +13,14 @@ function adicionar() {
 
   const data = new Date();
 
-  const movimento = {
+  movimentos.push({
     valor,
     tipo,
     descricao,
     mes: data.getMonth(),
     ano: data.getFullYear()
-  };
+  });
 
-  movimentos.push(movimento);
   salvarDados();
 
   document.getElementById("valor").value = "";
