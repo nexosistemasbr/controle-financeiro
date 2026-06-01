@@ -15,7 +15,7 @@ function adicionar() {
 
   movimentos.push({
     valor: valor,
-    tipo: tipo,
+    tipo: tipo.toLowerCase(),
     descricao: descricao,
     mes: data.getMonth(),
     ano: data.getFullYear()
@@ -50,13 +50,21 @@ function atualizar() {
   movimentos.forEach((m) => {
 
     if (m.tipo === "ganho") {
-      if (m.mes === mesAtual && m.ano === anoAtual) ganhosMes += m.valor;
-      if (m.ano === anoAtual) ganhosAno += m.valor;
+      if (m.mes === mesAtual && m.ano === anoAtual) {
+        ganhosMes += m.valor;
+      }
+      if (m.ano === anoAtual) {
+        ganhosAno += m.valor;
+      }
     }
 
     if (m.tipo === "gasto") {
-      if (m.mes === mesAtual && m.ano === anoAtual) gastosMes += m.valor;
-      if (m.ano === anoAtual) gastosAno += m.valor;
+      if (m.mes === mesAtual && m.ano === anoAtual) {
+        gastosMes += m.valor;
+      }
+      if (m.ano === anoAtual) {
+        gastosAno += m.valor;
+      }
     }
 
     listaHTML += `
@@ -68,8 +76,10 @@ function atualizar() {
   });
 
   document.getElementById("lista").innerHTML = listaHTML;
+
   document.getElementById("ganhosMes").innerText = "R$ " + ganhosMes.toFixed(2);
   document.getElementById("gastosMes").innerText = "R$ " + gastosMes.toFixed(2);
+
   document.getElementById("ganhosAno").innerText = "R$ " + ganhosAno.toFixed(2);
   document.getElementById("gastosAno").innerText = "R$ " + gastosAno.toFixed(2);
 
