@@ -14,6 +14,13 @@ function adicionar() {
   const data = new Date();
   const mes = data.getMonth();
   const ano = data.getFullYear();
+  const nomesMeses = [
+  "Janeiro","Fevereiro","Março","Abril","Maio","Junho",
+  "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"
+];
+
+document.getElementById("tituloMes").innerText =
+"Gastos de " + nomesMeses[mesAtual] + " " + anoAtual;
 
   const movimento = {
     valor,
