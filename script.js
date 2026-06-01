@@ -1,4 +1,8 @@
-let movimentos = [];
+let dados = JSON.parse(localStorage.getItem("financeiro")) || {
+  saldo: 0,
+  ganhos: [],
+  gastos: []
+};let movimentos = [];
 
 function adicionar() {
   const valor = parseFloat(document.getElementById("valor").value);
@@ -19,7 +23,7 @@ function adicionar() {
     ano
   };
 
-  movimentos.push(movimento);
+  movimentos.push(movimento);salvardados();
 
   document.getElementById("valor").value = "";
   document.getElementById("descricao").value = "";
