@@ -42,6 +42,13 @@ function atualizar() {
   const data = new Date();
   const mesAtual = data.getMonth();
   const anoAtual = data.getFullYear();
+  let totalGastosMes = 0;
+
+movimentos.forEach(m => {
+  if (m.tipo === "gasto" && m.mes === mesAtual && m.ano === anoAtual) {
+    totalGastosMes += m.valor;
+  }
+});
 
   let ganhosMes = 0;
   let gastosMes = 0;
