@@ -14,9 +14,9 @@ function adicionar() {
   const data = new Date();
 
   movimentos.push({
-    valor,
-    tipo,
-    descricao,
+    valor: valor,
+    tipo: tipo,
+    descricao: descricao,
     mes: data.getMonth(),
     ano: data.getFullYear()
   });
@@ -42,17 +42,21 @@ function atualizar() {
 
   let ganhosMes = 0;
   let gastosMes = 0;
+  let ganhosAno = 0;
+  let gastosAno = 0;
 
   let listaHTML = "";
 
   movimentos.forEach((m) => {
 
-    if (m.tipo === "ganho" && m.mes === mesAtual && m.ano === anoAtual) {
-      ganhosMes += m.valor;
+    if (m.tipo === "ganho") {
+      if (m.mes === mesAtual && m.ano === anoAtual) ganhosMes += m.valor;
+      if (m.ano === anoAtual) ganhosAno += m.valor;
     }
 
-    if (m.tipo === "gasto" && m.mes === mesAtual && m.ano === anoAtual) {
-      gastosMes += m.valor;
+    if (m.tipo === "gasto") {
+      if (m.mes === mesAtual && m.ano === anoAtual) gastosMes += m.valor;
+      if (m.ano === anoAtual) gastosAno += m.valor;
     }
 
     listaHTML += `
@@ -66,11 +70,16 @@ function atualizar() {
   document.getElementById("lista").innerHTML = listaHTML;
   document.getElementById("ganhosMes").innerText = "R$ " + ganhosMes.toFixed(2);
   document.getElementById("gastosMes").innerText = "R$ " + gastosMes.toFixed(2);
+  document.getElementById("ganhosAno").innerText = "R$ " + ganhosAno.toFixed(2);
+  document.getElementById("gastosAno").innerText = "R$ " + gastosAno.toFixed(2);
+
   document.getElementById("saldoTotal").innerText =
     "R$ " + (ganhosMes - gastosMes).toFixed(2);
 
-  document.getElementById("tituloMes").innerText =
-    "Gastos de " + nomesMeses[mesAtual] + " " + anoAtual;
+  const titulo = document.getElementById("tituloMes");
+  if (titulo) {
+    titulo.innerText = Gastos de ${nomesMeses[mesAtual]} ${anoAtual};
+  }
 }
 
 window.onload = atualizar;
