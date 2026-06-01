@@ -1,8 +1,8 @@
-let dados = JSON.parse(localStorage.getItem("financeiro")) || {
-  saldo: 0,
-  ganhos: [],
-  gastos: []
-};let movimentos = [];
+let movimentos = JSON.parse(localStorage.getItem("financeiro")) || [];
+
+function salvarDados() {
+  localStorage.setItem("financeiro", JSON.stringify(movimentos));
+}
 
 function adicionar() {
   const valor = parseFloat(document.getElementById("valor").value);
@@ -12,25 +12,18 @@ function adicionar() {
   if (!valor || valor <= 0) return;
 
   const data = new Date();
-  const mes = data.getMonth();
-  const ano = data.getFullYear();
-  const nomesMeses = [
-  "Janeiro","Fevereiro","Março","Abril","Maio","Junho",
-  "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"
-];
-
-document.getElementById("tituloMes").innerText =
-"Gastos de " + nomesMeses[mesAtual] + " " + anoAtual;
 
   const movimento = {
     valor,
     tipo,
     descricao,
-    mes,
-    ano
+    mes: data.getMonth(),
+    ano: data.getFullYear()
   };
 
-  movimentos.push(movimento);salvarDados();
+  movimentos.push(movimento);
+
+  salvarDados();
 
   document.getElementById("valor").value = "";
   document.getElementById("descricao").value = "";
@@ -39,22 +32,19 @@ document.getElementById("tituloMes").innerText =
 }
 
 function atualizar() {
+
   const data = new Date();
   const mesAtual = data.getMonth();
   const anoAtual = data.getFullYear();
-  let totalGastosMes = 0;
 
-movimentos.forEach(m => {
-  if (m.tipo === "gasto" && m.mes === mesAtual && m.ano === anoAtual) {
-    totalGastosMes += m.valor;
-  }
-});
+  const nomesMeses = [
+    "Janeiro","Fevereiro","Março","Abril","Maio","Junho",
+    "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"
+  ];
 
   let ganhosMes = 0;
   let gastosMes = 0;
-
-  let ganhosAno = 0;
-  let gastosAno = 0;
+  let totalGastosMes = 0;
 
   let listaHTML = "";
 
@@ -64,17 +54,12 @@ movimentos.forEach(m => {
       if (m.mes === mesAtual && m.ano === anoAtual) {
         ganhosMes += m.valor;
       }
-      if (m.ano === anoAtual) {
-        ganhosAno += m.valor;
-      }
     }
 
     if (m.tipo === "gasto") {
       if (m.mes === mesAtual && m.ano === anoAtual) {
         gastosMes += m.valor;
-      }
-      if (m.ano === anoAtual) {
-        gastosAno += m.valor;
+        totalGastosMes += m.valor;
       }
     }
 
@@ -86,15 +71,26 @@ movimentos.forEach(m => {
     `;
   });
 
-  const saldo = (ganhosMes - gastosMes);
+  document.getElementById("lista").innerHTML = listaHTML;
 
   document.getElementById("ganhosMes").innerText = "R$ " + ganhosMes.toFixed(2);
   document.getElementById("gastosMes").innerText = "R$ " + gastosMes.toFixed(2);
 
-  document.getElementById("ganhosAno").innerText = "R$ " + ganhosAno.toFixed(2);
-  document.getElementById("gastosAno").innerText = "R$ " + gastosAno.toFixed(2);
+  document.getElementById("saldoTotal").innerText =
+    "R$ " + (ganhosMes - gastosMes).toFixed(2);
 
-  document.getElementById("saldoTotal").innerText = "R$ " + saldo.toFixed(2);
+  // opcional (se tiver no HTML)
+  const titulo = document.getElementById("tituloMes");
+  if (titulo) {
+    titulo.innerText =
+      "Gastos de " + nomesMeses[mesAtual] + " " + anoAtual;
+  }
 
-  document.getElementById("lista").innerHTML = listaHTML;
+  const totalMesEl = document.getElementById("totalMes");
+  if (totalMesEl) {
+    totalMesEl.innerText =
+      "Total gasto no mês: R$ " + totalGastosMes.toFixed(2);
+  }
 }
+
+atualizar();
