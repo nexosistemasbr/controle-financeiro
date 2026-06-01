@@ -78,4 +78,4 @@ function atualizar() {
   }
 }
 
-atualizar();
+window.onload = atualizar;
