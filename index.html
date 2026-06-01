@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Controle Financeiro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- SALDO -->
+    <div class="card saldo">
+      <h2>💰 Saldo Atual</h2>
+      <p id="saldoTotal">R$ 0,00</p>
+    </div>
+
+    <!-- MÊS -->
+    <div class="grid">
+
+      <div class="card ganho">
+        <h3>📥 Ganhos do Mês</h3>
+        <p id="ganhosMes">R$ 0,00</p>
+      </div>
+
+      <div class="card gasto">
+        <h3>📤 Gastos do Mês</h3>
+        <p id="gastosMes">R$ 0,00</p>
+      </div>
+
+    </div>
+
+    <!-- ANO -->
+    <div class="card">
+      <h3>📅 Resumo do Ano</h3>
+      <p>Ganhos: <span id="ganhosAno">R$ 0,00</span></p>
+      <p>Gastos: <span id="gastosAno">R$ 0,00</span></p>
+    </div>
+
+    <!-- FORM -->
+    <div class="card form">
+
+      <h3>➕ Adicionar Movimento</h3>
+
+      <input type="number" id="valor" placeholder="Valor (R$)">
+
+      <select id="tipo">
+        <option value="ganho">Ganho</option>
+        <option value="gasto">Gasto</option>
+      </select>
+
+      <input type="text" id="descricao" placeholder="Descrição (opcional)">
+
+      <button onclick="adicionar()">Adicionar</button>
+
+    </div>
+
+    <!-- LISTA -->
+    <div class="card">
+      <h3>📋 Movimentos</h3>
+      <div id="lista"></div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

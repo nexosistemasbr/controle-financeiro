@@ -1,0 +1,117 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #0f172a;
+  color: #e2e8f0;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 500px;
+}
+
+/* CARDS */
+.card {
+  background: #1e293b;
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.card h2, .card h3 {
+  margin-bottom: 10px;
+}
+
+/* SALDO */
+.saldo {
+  text-align: center;
+}
+
+.saldo p {
+  font-size: 28px;
+  font-weight: bold;
+  color: #22c55e;
+}
+
+/* GRID MES */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.ganho p {
+  color: #22c55e;
+  font-weight: bold;
+}
+
+.gasto p {
+  color: #ef4444;
+  font-weight: bold;
+}
+
+/* FORM */
+.form input,
+.form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+}
+
+.form input {
+  background: #0f172a;
+  color: white;
+}
+
+.form select {
+  background: #0f172a;
+  color: white;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: #3b82f6;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #2563eb;
+}
+
+/* LISTA */
+#lista {
+  margin-top: 10px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  border-bottom: 1px solid #334155;
+}
+
+.item.ganho {
+  color: #22c55e;
+}
+
+.item.gasto {
+  color: #ef4444;
+}
