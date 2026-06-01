@@ -14,9 +14,9 @@ function adicionar() {
   const data = new Date();
 
   movimentos.push({
-    valor: valor,
+    valor,
     tipo: tipo.toLowerCase(),
-    descricao: descricao,
+    descricao,
     mes: data.getMonth(),
     ano: data.getFullYear()
   });
@@ -50,21 +50,13 @@ function atualizar() {
   movimentos.forEach((m) => {
 
     if (m.tipo === "ganho") {
-      if (m.mes === mesAtual && m.ano === anoAtual) {
-        ganhosMes += m.valor;
-      }
-      if (m.ano === anoAtual) {
-        ganhosAno += m.valor;
-      }
+      if (m.mes === mesAtual && m.ano === anoAtual) ganhosMes += m.valor;
+      if (m.ano === anoAtual) ganhosAno += m.valor;
     }
 
     if (m.tipo === "gasto") {
-      if (m.mes === mesAtual && m.ano === anoAtual) {
-        gastosMes += m.valor;
-      }
-      if (m.ano === anoAtual) {
-        gastosAno += m.valor;
-      }
+      if (m.mes === mesAtual && m.ano === anoAtual) gastosMes += m.valor;
+      if (m.ano === anoAtual) gastosAno += m.valor;
     }
 
     listaHTML += `
@@ -88,7 +80,7 @@ function atualizar() {
 
   const titulo = document.getElementById("tituloMes");
   if (titulo) {
-    titulo.innerText = Resumo de ${nomesMeses[mesAtual]} ${anoAtual};
+    titulo.innerText = 📅 Você está em: ${nomesMeses[mesAtual]} ${anoAtual};
   }
 }
 
