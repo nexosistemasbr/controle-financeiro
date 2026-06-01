@@ -78,7 +78,7 @@ function atualizar() {
 
   const titulo = document.getElementById("tituloMes");
   if (titulo) {
-    titulo.innerText = Gastos de ${nomesMeses[mesAtual]} ${anoAtual};
+    titulo.innerText = Resumo de ${nomesMeses[mesAtual]} ${anoAtual};
   }
 }
 
