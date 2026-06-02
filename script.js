@@ -80,7 +80,7 @@ function atualizar() {
 
   const titulo = document.getElementById("tituloMes");
   if (titulo) {
-    titulo.innerText = 📅 Você está em: ${nomesMeses[mesAtual]} ${anoAtual};
+    titulo.innerText = `📅 Você está em: ${nomesMeses[mesAtual]} ${anoAtual}`;
   }
 }
 
